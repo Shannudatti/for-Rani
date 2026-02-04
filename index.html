@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For Rani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      height: 100vh;
+      background: linear-gradient(135deg, #f8bbd0, #f48fb1);
+      overflow: hidden;
+    }
+
+    /* ===== Pages ===== */
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.8s ease-in-out;
+      padding: 20px;
+    }
+
+    .page1 { z-index: 2; }
+    .page2 {
+      background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+      transform: translateX(100%);
+      z-index: 1;
+    }
+
+    .page2.show { transform: translateX(0); }
+    .page1.hide { transform: translateX(-100%); }
+
+    /* ===== Intro BEFORE card ===== */
+    .intro {
+      position: absolute;
+      top: 12%;
+      text-align: center;
+      color: #880e4f;
+      opacity: 0;
+      animation: fadeIntro 1.5s ease forwards;
+    }
+
+    .intro h2 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .intro p {
+      font-size: 16px;
+      letter-spacing: 2px;
+    }
+
+    @keyframes fadeIntro {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ===== Card ===== */
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+      text-align: center;
+      z-index: 5;
+      margin-top: 60px; /* space after intro */
+    }
+
+    h1 {
+      font-size: 21px;
+      color: #ad1457;
+      margin-bottom: 14px;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    button {
+      padding: 11px 18px;
+      font-size: 14.5px;
+      border-radius: 22px;
+      border: none;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    #yesBtn {
+      background: #2e7d32;
+      color: white;
+    }
+
+    #noBtn {
+      background: #c62828;
+      color: white;
+      position: relative;
+    }
+
+    /* ===== Page 2 ===== */
+    .final-text {
+      font-size: 15px;
+      line-height: 1.85;
+      color: #333;
+    }
+
+    /* ===== Emojis floating ===== */
+    .emoji {
+      position: fixed;
+      bottom: -20px;
+      animation: emojiFloat 5s linear forwards;
+      font-size: 24px;
+      z-index: 1;
+      opacity: 0.8;
+    }
+
+    @keyframes emojiFloat {
+      to {
+        transform: translateY(-120vh);
+        opacity: 0;
+      }
+    }
+
+    /* ===== Anime ===== */
+    .anime {
+      position: fixed;
+      bottom: -140px;
+      animation: animeMove 9s linear forwards;
+      opacity: 0.9;
+      z-index: 0;
+    }
+
+    @keyframes animeMove {
+      from { transform: translateY(0) scale(0.95); }
+      to { transform: translateY(-140vh) scale(1.1); opacity: 0; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- PAGE 1 -->
+  <div class="page page1" id="page1">
+
+    <!-- Intro -->
+    <div class="intro">
+      <h2>💗 Hey Rani</h2>
+      <p>✨🌙💫</p>
+    </div>
+
+    <div class="card">
+      <h1>Just something honest</h1>
+
+      <p>
+        I’m not good at dramatic words 😅  
+        So I’ll keep this simple.<br><br>
+
+        I like you.  
+        I respect you.  
+        And I genuinely enjoy the time we spend together 🌙<br><br>
+
+        So I wanted to ask you —
+      </p>
+
+      <p><b>Would you like to take this forward with me? 🤍</b></p>
+
+      <div class="buttons">
+        <button id="yesBtn">Yes 😊</button>
+        <button id="noBtn">No 🙃</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div class="page page2" id="page2">
+    <div class="card">
+      <h1>Why this matters 💭</h1>
+
+      <p class="final-text">
+        It’s not just the conversations 💬  
+        It’s the nights we spent together 🌙<br><br>
+
+        Sitting close, talking slowly,  
+        sometimes just being quiet — and still feeling comfortable 🤍<br><br>
+
+        Those moments made me realise  
+        I wasn’t just passing time…  
+        I was building a connection with you 🌱<br><br>
+
+        I don’t want to rush or complicate things.  
+        I just want to continue what already feels right 🙂
+      </p>
+    </div>
+  </div>
+
+  <!-- Audio -->
+  <audio id="loveSong" loop>
+    <source src="song.mp3" type="audio/mpeg">
+    
+  </audio>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+    const page1 = document.getElementById("page1");
+    const page2 = document.getElementById("page2");
+    const song = document.getElementById("loveSong");
+    song.volume = 0.15; 
+
+
+    function moveNo() {
+      const x = Math.random() * 160 - 80;
+      const y = Math.random() * 80 - 40;
+      noBtn.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("touchstart", moveNo);
+
+    yesBtn.addEventListener("click", () => {
+      page1.classList.add("hide");
+      page2.classList.add("show");
+      song.play();
+      startEmojis();
+      startAnime();
+    });
+
+    function startEmojis() {
+      setInterval(() => {
+        const e = document.createElement("div");
+        e.className = "emoji";
+        e.innerText = ["💗","🌙","✨","🤍","💫"][Math.floor(Math.random() * 5)];
+        e.style.left = Math.random() * 100 + "vw";
+        document.body.appendChild(e);
+        setTimeout(() => e.remove(), 5000);
+      }, 600);
+    }
+
+    function startAnime() {
+      const images = ["anime1.png", "anime2.png"];
+      setInterval(() => {
+        const img = document.createElement("img");
+        img.src = images[Math.floor(Math.random() * images.length)];
+        img.className = "anime";
+        img.style.left = Math.random() * 70 + "vw";
+        img.style.width = 160 + Math.random() * 100 + "px";
+        document.body.appendChild(img);
+        setTimeout(() => img.remove(), 9000);
+      }, 1800);
+    }
+  </script>
+
+</body>
+</html>
